@@ -62,7 +62,7 @@ Here's an improved version:
 Copy the `.env.example` file and rename it to `.env`.
 
 - **ControlD API Key** (requis) :
-- 
+
 > [!IMPORTANT]
 > Make sure you configure a ControlD API key with **write permissions**.
 
