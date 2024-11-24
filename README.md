@@ -1,10 +1,17 @@
 # Locked
 
+![Locked](https://github.com/user-attachments/assets/2a4277f8-5363-49e7-8054-36d18881b58c)
+
+
 **Locked** is a web application designed as a practical add-on for **ControlD** users. It makes it easy to manage access to sites blocked or unblocked by **ControlD DNS**, while providing additional security information for each domain. To use this project you need a **ControlD subscription**.
 
-# How does it work?
-
 # Features
+
+- **Fast domain blocking and unblocking**: add or remove domains from your ControlD block lists with a single click.
+- **ControlD subscription overview**: quickly view the number of days remaining on your ControlD subscription.
+- **Security information**: view domain security information directly from the block/unblock page. This information is provided by VirusTotal via a personal API key.
+
+# How does it work?
 
 When **ControlD** blocks a site, a customised blocking page is displayed (if this option is enabled in ControlD). Locked integrates directly with this page to provide a simplified management experience:
 
@@ -49,8 +56,9 @@ Here's an improved version:
 Copy the `.env.example` file and rename it to `.env`.
 
 - **ControlD API Key** (requis) :
-  > [!IMPORTANT]
-  > Make sure you configure a ControlD API key with **write permissions**.
+- 
+> [!IMPORTANT]
+> Make sure you configure a ControlD API key with **write permissions**.
 
 Paste your **ControlD API** key into the `.env` file to activate the blocking and unblocking functions.
 
