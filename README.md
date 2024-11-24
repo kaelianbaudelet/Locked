@@ -61,14 +61,14 @@ Here's an improved version:
 
 Copy the `.env.example` file and rename it to `.env`.
 
-- **ControlD API Key** (requis) :
+- **ControlD API Key** (required) :
 
 > [!IMPORTANT]
 > Make sure you configure a ControlD API key with **write permissions**.
 
 Paste your **ControlD API** key into the `.env` file to activate the blocking and unblocking functions.
 
-- **VirusTotal API Key** (facultatif) :
+- **VirusTotal API Key** (optional) :
 
 To display domain security information, also paste your **VirusTotal API** key to the `.env` file.
 
