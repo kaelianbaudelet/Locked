@@ -1,0 +1,49 @@
+name: Build and Publish Docker Image for Development
+
+on:
+    push:
+        tags:
+            - "dev*.*.*"
+    pull_request:
+        branches:
+            - main
+    workflow_dispatch:
+
+env:
+    REGISTRY_IMAGE: rg.fr-par.scw.cloud/locked/locked
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            BUILD_VERSION: ${{ steps.prep.outputs.BUILD_VERSION }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+            - name: Login to GAR
+              uses: docker/login-action@v2
+              with:
+                  registry: rg.fr-par.scw.cloud/locked
+                  username: nologin
+                  password: ${{ secrets.SCALEWAY_REGISTRY_PASSWORD }}
+            - name: Prepare
+              id: prep
+              run: |
+                  TS=$(date +%s)
+                  REVISION=${GITHUB_SHA::8}
+                  BUILD_VERSION="${REVISION}-${TS}"
+                  echo "REVISION=${REVISION}" >> $GITHUB_OUTPUT
+                  echo "BUILD_VERSION=${BUILD_VERSION}" >> $GITHUB_OUTPUT
+            - name: Build and push app for development
+              uses: docker/build-push-action@v3
+              with:
+                  file: Dockerfile
+                  context: .
+                  target: production
+                  push: true
+                  pull: true
+                  tags: |
+                      ${{ env.REGISTRY_IMAGE }}:dev-latest-${{ steps.prep.outputs.BUILD_VERSION }}
+                      ${{ env.REGISTRY_IMAGE }}:dev-latest

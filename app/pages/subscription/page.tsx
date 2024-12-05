@@ -1,9 +1,10 @@
 "use client";
 
-import WebsiteBrowserCard from "#components/website/WebsiteBrowserCard";
+import React from "react";
 import Tabs, { TabLink } from "#components/Tabs";
+import SubscriptionCard from "#components/subscription/SubscriptionCard";
 
-export default function Welcome() {
+export default function Subscription() {
     const links: TabLink[] = [
         {
             name: "Analyse",
@@ -18,7 +19,7 @@ export default function Welcome() {
     return (
         <>
             <Tabs props={{ link: links }}>
-                <WebsiteBrowserCard />
+                <SubscriptionCard />
             </Tabs>
         </>
     );
