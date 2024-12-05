@@ -1,24 +1,41 @@
-# Utiliser l'image Node.js officielle
-FROM node:18-alpine
 
-# Définir le répertoire de travail
+FROM node:18-alpine AS base
+
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Copier package.json et package-lock.json
-COPY package.json ./
-COPY package-lock.json ./
-
-# Installer les dépendances
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
 RUN npm install
 
-# Copier le reste des fichiers du projet
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Construire l'application Next.js
+ENV NEXT_TELEMETRY_DISABLED=1
+
 RUN npm run build
 
-# Exposer le port de l'application
-EXPOSE 3000
+# Production image, copy all the files and run next
+FROM base AS production
+WORKDIR /app
 
-# Démarrer l'application
-CMD ["npm", "start"]
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE $PORT
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
