@@ -1,10 +1,10 @@
 "use client";
 
-import WebsiteSecurityCard from "#components/website/WebsiteSecurityCard";
-import WebsiteStateCard from "#components/website/WebsiteStateCard";
+import WebsiteSecurityCard from "@/src/components/website/WebsiteSecurityCard";
+import WebsiteStateCard from "@/src/components/website/WebsiteStateCard";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import Tabs, { TabLink } from "#components/Tabs";
+import Tabs, { TabLink } from "@/src/components/Tabs";
 
 export default function Stats() {
     return (
@@ -22,7 +22,7 @@ function SearchParamsWrapper() {
         {
             name: "Analyse",
             pathname: `/action`,
-            to: `/action?w=${website}`,
+            to: `/status?w=${website}`,
         },
         {
             name: "Abonnement",

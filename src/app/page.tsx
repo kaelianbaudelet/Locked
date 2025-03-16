@@ -1,7 +1,7 @@
 "use client";
 
-import WebsiteBrowserCard from "#components/website/WebsiteBrowserCard";
-import Tabs, { TabLink } from "#components/Tabs";
+import WebsiteBrowserCard from "@/src/components/website/WebsiteBrowserCard";
+import Tabs, { TabLink } from "@/src/components/Tabs";
 
 export default function Welcome() {
     const links: TabLink[] = [

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PercentageCircle from "#components/PercentageCircle";
+import PercentageCircle from "@/src/components/PercentageCircle";
 
 interface VendorResult {
     result: "safe" | "unsafe" | null;

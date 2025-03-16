@@ -22,7 +22,7 @@ export default function WebsiteBrowserCard() {
         const sanitizedUrl = url.replace(/^(https?:\/\/)/, "");
 
         // Créer un nouveau lien avec l'URL nettoyée et rediriger
-        const formAction = `/action?w=${encodeURIComponent(sanitizedUrl)}`;
+        const formAction = `/status?w=${encodeURIComponent(sanitizedUrl)}`;
         window.location.href = formAction;
     };
 
