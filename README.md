@@ -1,4 +1,4 @@
-# Locked
+# Locked for ControlD
 
 ![Locked](https://github.com/user-attachments/assets/2a4277f8-5363-49e7-8054-36d18881b58c)
 
@@ -80,6 +80,6 @@ pnpx next dev
 
 # License
 
-Copyright © 2024 Kaelian BAUDELET and contributors.
+Copyright © 2026 Kaelian BAUDELET and contributors.
 
 Code published under the **MIT licence.**
